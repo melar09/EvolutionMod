@@ -1,0 +1,66 @@
+#EVO-Icons{
+	position: absolute;
+	bottom: 10px;
+	left: 70px;
+	color: Gray;
+	font-family: FontAwesome;
+	font-size: 24pt;
+	z-index: 220001;
+}
+	#EVO-Icons .ico{
+		padding: 20px 10px 20px 10px;
+		display: inline-block;
+	}
+	#EVO-Icons .ico:hover, #EVO-Icons .ico:focus{
+		color: dimgray;
+		-webkit-transition-duration: 0.2s;
+	}
+
+	#EVO-Icons .staff:before{ content: "\f0c0"; }
+	#EVO-Icons .games:before{ content: "\f0ce"; }
+	#EVO-Icons .menu:before{ content: "\f0e7"; }
+
+.EVO{}
+.EVO .hint{
+	text-align: center;
+	font-color: gray;
+	padding: 1em 0em;
+	font-style: italic;
+}
+.EVO table{
+	width: 100%;
+	border-spacing: 2px;
+}
+
+	.EVO .specialty{
+		font-size: 0.6em;
+		font-style: italic;
+		color: gray;
+		display: block;
+	}
+	.EVO th{
+		color: black;
+		background-image: -webkit-linear-gradient(top, #FAA51A 0%, #F47A20 100%);
+		text-align: left;
+		line-height: 1.5em;
+		padding: 0 5px;
+		border: 1px solid #000;
+		cursor: pointer;
+		font-weight: normal;
+	}
+
+	.EVO tbody tr:nth-child(odd){
+		background-color: #EEE;
+	}
+
+	.EVO tbody td{
+		padding: 0.5em 1em;
+	}
+
+	.EVO .staffR, .EVO .staffD, .EVO .staffT, .EVO .staffS, .EVO .staffL{
+		text-align: center;
+		vertical-align: top;
+	}
+	.EVO .staffN, .EVO .staffP{
+		vertical-align: top;
+	}

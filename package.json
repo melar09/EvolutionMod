@@ -1,0 +1,10 @@
+{
+	"id" : "evo-mod",
+	"name" : "GameDevTycoon Evolution Mod",
+	"version":"1.0.0",
+	"author":"Chris Miller (melar09)",
+	"url":"https://github.com/melar09",
+	"description" : "Mod Pack to addon a ton of features to help enhance the base game and keep the game fresh with new content.",
+	"main" : "./EvolutionMod.js",
+	"dependencies" : {"UltimateLib":"1.x.x"}
+}
