@@ -8,7 +8,7 @@ This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.gre
  - [UltimateLib](http://gdt-ultimatesuite.abesco.de/)
 
 ###Status
-Currently this pack is **Released** however is under heavy development. I recommend following the forum post [here](http://forum.greenheartgames.com/) for any updates, patches, or newer versions. Any developer wishing to help with changes or adding features is welcome to join just send me a message. Here is a link to our [Change Log](https://github.com/melar09/SuperChargedMod/blob/master/changelog.md) by versions.
+Currently this pack is **Released** however is under heavy development. I recommend following the forum post [here](http://forum.greenheartgames.com/t/rel-evolutionmod-version-1-0-0/) for any updates, patches, or newer versions. Any developer wishing to help with changes or adding features is welcome to join just send me a message.
 
 ###Features
 _Anything marked with a **(NA)** has not been added yet. Anything with **(WIP)** is a work in progress and partially implemented. Anything which has no marks has been completely added and tested fully._
