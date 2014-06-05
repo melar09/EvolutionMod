@@ -1,6 +1,6 @@
 var Evolution = {};
 (function () {
-	Evolution.version = '1.0.0';
+	Evolution.version = '1.0.1';
 	
 	var ready = function () {
 		Evolution.init();
@@ -10,14 +10,7 @@ var Evolution = {};
 
 	};
 
-	GDT.loadJs(['mods/gdt-modAPI/helpers/checks.js',
-	'mods/gdt-modAPI/api/persistence.js',
-	'mods/gdt-modAPI/api/events.js',
-	'mods/gdt-modAPI/api/platforms.js',
-	'mods/gdt-modAPI/api/topics.js',
-	'mods/gdt-modAPI/api/research.js',
-	'mods/UltimateLib/UltimateLib.js',
-
+	GDT.loadJs([
 	'mods/EvolutionMod/sources/general.js',
 	'mods/EvolutionMod/sources/engine.js',
 	'mods/EvolutionMod/sources/staff.js',

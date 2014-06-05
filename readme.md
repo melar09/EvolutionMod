@@ -1,4 +1,4 @@
-EvolutionMod (Version 1.0 Beta)
+EvolutionMod (Version 1.0.1)
 ===============
 ###What is this?
 This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.greenheartgames.com/app/game-dev-tycoon/) this pack is aimed at adding a bunch of options onto the original game that I wish were in the original. We do require some mods to be installed first before you can use this mod. They are listed below as Dependencies. 
@@ -30,10 +30,10 @@ This pack added the following features to the research menu, all of the research
 ####Game Engine Parts
 - Video Aspect Ratios 
     - 460p Aspect Ratio
-	- 720p Aspect Ratio
-	- 1080p Aspect Ratio
-	- 2K Aspect Ratio
-	- 4K Aspect Ratio
+    - 720p Aspect Ratio
+    - 1080p Aspect Ratio
+    - 2K Aspect Ratio
+    - 4K Aspect Ratio
 - Multiple Displays
 - Realtime Illumination
 - Subsurface Scattering
@@ -71,7 +71,7 @@ This pack added the following features to the research menu, all of the research
 
 ####Other Changes
 - Conventions now add to your fan base. 
-- Improved View Staff (Button Bottom Left by Main Menu)
+- New Staff Menu View (Button Bottom Left by Main Menu)
 - Customized EVO Mod Control Menu for settings and configurations.
 
 ###Planned Features:
