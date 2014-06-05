@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 EvolutionMod (Version 1.0.1)
+=======
+EvolutionMod (Version 1.0.0 )
+>>>>>>> d9a6d29f46fe46df06c7199cd19b8fa0ab12ac03
 ===============
 ###What is this?
 This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.greenheartgames.com/app/game-dev-tycoon/) this pack is aimed at adding a bunch of options onto the original game that I wish were in the original. We do require some mods to be installed first before you can use this mod. They are listed below as Dependencies. 
