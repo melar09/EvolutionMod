@@ -153,8 +153,11 @@
 		afterGameReview: function (e){
 
 		},
+		beforeConventions: function(e){
+
+		},
 		afterConventions: function(e){
-			Evolution.conventionFans();
+			Evolution.conventionFans(e);
 		}
 	};
 
@@ -171,8 +174,9 @@
 				General.runConference = Evolution.hooks.Conventions.hijacked;
 			},
 			hijacked: function(company) {
-				Evolution.gameEvents.afterConventions(company);
+				Evolution.gameEvents.beforeConventions(company);
 				Evolution.hooks.Conventions.originalMethod(company);
+				Evolution.gameEvents.afterConventions(company);
 			}
 		}
 
@@ -204,6 +208,10 @@
 		GDT.on(GDT.eventKeys.gameplay.engineFinished, 		Evolution.gameEvents.engineFinished);
 		GDT.on(GDT.eventKeys.gameplay.afterGameReview, 		Evolution.gameEvents.afterGameReview);
 
+		/* Sink Hooks */
+		Evolution.hooks.Conventions.init();
+
+		/* Load up modules */
 		Evolution.EngineParts.init();
 		Evolution.Staff.init();
 		Evolution.Marketing.init();
@@ -213,12 +221,28 @@
 	};
 
 
-	Evolution.conventionFans = function(){
+	Evolution.conventionFans = function(company){
+		var lastGame = company.gameLog[ company.gameLog.length-1 ];
+		var multiplier = (Math.round(( lastGame.score-5) * 100 ) / 100 );
 		var b = company.fans, c = company.getCurrentDate().year, g = Math.floor(49876 + 47500 * c), k = Math.floor(0.005 * g), c = k, b = (b / 5E5).clamp(0, 1), d = Math.floor(g * b * 0.7), n = Math.floor(g * company.conferenceStandFactor * 0.3), c = c + d + n, c = Math.floor(c.clamp(0, g));
+		
+		if (multiplier>0){
+			//add fans
+			var newFans = Math.floor(c*multiplier);
+			company.fansChange = newFans;
+		}else{
+			// subtract fans
+			var change = ( Math.abs(multiplier)*0.1 ); // get positive decimal place
+			var newFans = Math.floor(c*change);
+			company.fansChange = -newFans;
 
-		/* Add Fans */
-		var newFans = Math.floor( c * 0.005 ); // Get 5% of visitors
-		company.fansChange = newFans;
+			// Notification push
+			var n = new Notification({
+				header: 'Oh No!, this is not good',
+				text: 'Apparently since our last game only scored a '+Math.round(lastGame.score)+' we lost '+UI.getShortNumberString(newFans)+' fans. We should be more careful with when we release games.'
+			});
+			GameManager.company.notifications.push(n);
+		}
 	};
 
 

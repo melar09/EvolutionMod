@@ -32,146 +32,227 @@
 
 		init: function() {
 			var html = '<div id="EVO-Icons">'
-			 +'<div id="EVO-Icon" class="ico menu" onclick="Evolution.Menus.openMenu()"></div>'
-			 +'<div id="EVO-Icon-Staff" class="ico staff" onclick="Evolution.Menus.openStaff()"></div>'
-			 +'<div id="EVO-Icon-Games" class="ico games" onclick="Evolution.Menus.openGames()"></div>'
+			 +'<div id="EVO-Icon" class="ico menu" onclick="Evolution.Menus.menuDialog.open()"></div>'
+			 +'<div id="EVO-Icon-Staff" class="ico staff" onclick="Evolution.Menus.staffDialog.open()"></div>'
+			 +'<div id="EVO-Icon-Games" class="ico games" onclick="Evolution.Menus.gameDialog.open()"></div>'
 			 +'</div>';
 			$('#mainMenuButton').after(html);
 
-			var mainMenu = '<div id="EVO-Menu-Main'
-			 + 'Main Menu'
-			 + '</div>';
-
-			Evolution.Menus.menuDialog();
-			Evolution.Menus.staffDialog();
+			Evolution.Menus.menuDialog.init();
+			Evolution.Menus.staffDialog.init();
+			Evolution.Menus.gameDialog.init();
 		},
 
-		/* Lvl Design Tech Speed Research */
-		staffDialog: function() {
-			var html = '<div id="EVO-Menu-Staff" class="windowBorder wideWindow EVO" style="overflow:auto;display:none;">'
-			 + '<div class="windowTitle smallerWindowTitle">EvolutionMod - View Staff</div>'
-			 + '<table id="EVO-Staff-Table"><thead><tr>'
-			 + '<th>Name:</th><th>Level:</th><th>Design:</th><th>Tech:</th><th>Speed:</th><th>Research:</th><th>Pay:</th>'
-			 + '</tr></thead><tbody>'
-			 + '</tbody></table>'
-			 + '<div class="EVO hint">You can sort this table by clicking headers at top</div>'
-			 + '</div>';
-			var body = $('body');
-			body.append(html);
-
-			// And now add sorting
-			$('#EVO-Staff-Table').tablesorter();
-		},
-
-		menuDialog: function() {
-			var html = '<div id="EVO-Menu-Main" class="windowBorder tallWindow" style="overflow:auto;display:none;">'
-			 + '<div class="windowTitle smallerWindowTitle">EvolutionMod</div>'
-			 + '<div class="centeredButtonWrapper">'
-
-			 + '<div class="evobtn-staffVacation selectorButton orangeButton windowLargeOkButton mainMenuButton disabled">Staff Vacation</div>'
-
-			 + '<div style="text-align:center;line-height:1.5em;">More Options Soon</div>'
-			 + '</div></div>';
-
-			var body = $('body');
-			body.append(html);
-		},
-
-		gameDialog: function() {
-
-		},
-
-
-		unlockVacations: function() {
-
-		},
-
-		openGames : function() {
-			UI.showGameHistory();
-		},
-
-		openStaff: function() {
-			Sound.click();
-			GameManager.pause(!0);
-
-			/* And show the Dialog */
-			$('#EVO-Menu-Staff').gdDialog({
-				popout: true,
-				close: true,
-				modal: true,
-				draggable: false,
-				onClose: function () {
-					GameManager.resume(!0);
-				}
-			});
-
-			/* Select and wipe container clean */
-			var container = $('#EVO-Staff-Table > tbody');
-			container.html('');
-
-			/* Our template */
-			var template = '<tr><td class="staffN"></td><td class="staffL"></td><td class="staffD">'
-			 + '</td><td class="staffT"></td><td class="staffS"></td>'
-			 + '<td class="staffR"></td><td class="staffP"></td></tr>';
-			
-			/* Walk through staff */
-			for(var i=0,len=GameManager.company.staff.length;i<len;i++) {
-				var staff 		= GameManager.company.staff[i];
-				var temp 		= $(template).clone();
-
-				temp.find('.staffL').text( Math.floor(staff.experience ? LevelCalculator.getLevelFractional(staff.experience) : 5 * staff.qualityFactor) );
-				temp.find('.staffD').text( Math.floor(500 * staff.designFactor) );
-				temp.find('.staffT').text( Math.floor(500 * staff.technologyFactor) );
-				temp.find('.staffS').text( Math.floor(500 * staff.speedFactor) );
-				temp.find('.staffR').text( Math.floor(500 * staff.researchFactor) );
-				temp.find('.staffP').text( UI.getShortNumberString(staff.salary) );
-
-				/* Are we a tech or design specialist */
-				if (staff.flags.designSpecialist){
-					temp.find('.staffN').html( staff.name + '<br /><span class="specialty">Design Specialist</span>');
-				} else if (staff.flags.technologySpecialist){
-					temp.find('.staffN').html( staff.name + '<br /><span class="specialty">Tech Specialist</span>' );
-				} else{
-					temp.find('.staffN').text( staff.name );
-				}
-
-				/* Attach to table */
-				container.append( temp );
-			}
-
-			$('#EVO-Staff-Table').trigger("update");
-
-		},
-
-		openMenu: function() {
-			Sound.click();
-			GameManager.pause(!0);
-
-			$('#EVO-Menu-Main').gdDialog({
-				popout: true,
-				close: true,
-				modal: true,
-				draggable: false,
-				onClose: function () {
-					GameManager.resume(!0);
-				}
-			});
-
-			/* Enable Staff Vacations */
-			if (Evolution.data.researchFlags.staff.retreat){
-
-				$('.evobtn-staffVacation').removeClass("disabled").clickExclOnce(function(){
-					Sound.click();
-					
-					Evolution.Staff.sendOnVacation();
-
-                    $("#EVO-Menu-Main").dialog("close");
-                    GameManager.resume(!0);
+		menuDialog: {
+			init: function(){
+				$.get('mods/EvolutionMod/assets/templates/menu-container.html',function(tmpl){
+					var complied = Handlebars.compile(tmpl);
+					$('body').append( complied() );
 				});
+			},
+
+			open: function(){
+				Sound.click();
+				GameManager.pause(!0);
+
+				$('#EVO-Menu-Main').gdDialog({
+					popout: true,
+					close: true,
+					modal: true,
+					draggable: false,
+					onClose: function () {
+						GameManager.resume(!0);
+					}
+				});
+
+				/* Enable Staff Vacations */
+				if (Evolution.data.researchFlags.staff.retreat){
+
+					$('.evobtn-staffVacation').removeClass("disabled").clickExclOnce(function(){
+						Sound.click();
+						
+						Evolution.Staff.sendOnVacation();
+
+	                    $("#EVO-Menu-Main").dialog("close");
+	                    GameManager.resume(!0);
+					});
+				}
+			}
+		},
+
+		staffDialog: {
+			init: function(){
+
+				/* Fetch and append our modal */
+				$.get('mods/EvolutionMod/assets/templates/staff-container.html',function(tmpl){
+					var complied = Handlebars.compile(tmpl);
+
+					$('body').append( complied() );
+					$('#EVO-Staff-Table').tablesorter();
+
+				});
+			},
+
+			open: function(){
+				Sound.click();
+				GameManager.pause(!0);
+
+				/* And show the Dialog */
+				$('#EVO-Menu-Staff').gdDialog({
+					popout: true,
+					close: true,
+					modal: true,
+					draggable: false,
+					onClose: function () {
+						GameManager.resume(!0);
+					}
+				})
+
+				$('#EVO-Menu-Staff').find('.okButton').clickExclOnce(function(){
+					Sound.click();
+					UI.closeAllDialogs();
+				});
+
+				Evolution.Menus.staffDialog.tableView();
+				return;
+			},
+
+			singleViewStaff: {},
+			singleView: function(index){
+				if (!GameManager.company.staff[index]) {
+					return false;
+				}
+
+				var staff 		= GameManager.company.staff[index];
+
+				/* Some specialty & expert checks */
+				var rank = '';
+				if (staff.flags.designSpecialist) {
+					rank = 'Design Specialist';
+				}
+				if (staff.flags.technologySpecialist) {
+					rank = 'Tech Specialist';
+				}
+
+				if (rank!='' && staff.flags.expert) {
+					rank += ' - ';
+				}
+
+				if (staff.flags.expert) {
+					rank += staff.flags.expert;
+				}
+
+				/* Add to template object */
+				Evolution.Menus.staffDialog.singleViewStaff = {
+					index: index,
+					name: staff.name,
+					rank: rank,
+					level: Math.floor(staff.experience ? LevelCalculator.getLevelFractional(staff.experience) : 5 * staff.qualityFactor),
+					design: Math.floor(500 * staff.designFactor),
+					tech: Math.floor(500 * staff.technologyFactor),
+					speed: Math.floor(500 * staff.speedFactor),
+					research: Math.floor(500 * staff.researchFactor),
+					pay: UI.getShortNumberString(staff.salary),
+					progressBar: Math.floor(LevelCalculator.getProgressToNextLevel(staff.experience))
+				};
+
+				/* Fetch template and add our data */
+				$.get('mods/EvolutionMod/assets/templates/staff-panelview.html',function(tmpl){
+					var complied = Handlebars.compile(tmpl);
+
+					$('#EVO-Menu-Staff .singleView').html( complied(
+						Evolution.Menus.staffDialog.singleViewStaff
+						));
+
+					/* Animate Please =D */
+					$('#EVO-Menu-Staff .listView').fadeOut(200,function(){
+						$('#EVO-Menu-Staff .singleView').fadeIn(200);
+					});
+
+					/* Backwards button */
+					$('.evobtn-goback').clickExclOnce(function(){
+						Sound.click();
+						$('#EVO-Menu-Staff .singleView').fadeOut(200,function(){
+							$('#EVO-Menu-Staff .listView').fadeIn(200);
+						});
+					});
+				});
+			},
+
+			tableViewStaff: {
+				total: 0,
+				staff: []
+			},
+			tableView: function(){
+				Evolution.Menus.staffDialog.tableViewStaff.total = GameManager.company.staff.length;
+				Evolution.Menus.staffDialog.tableViewStaff.staff = [];
+
+				/* Looopy do looop */
+				for(var i=0,len=GameManager.company.staff.length;i<len;i++) {
+					var staff 		= GameManager.company.staff[i];
+
+					/* Some specialty & expert checks */
+					var rank = '';
+					if (staff.flags.designSpecialist) {
+						rank = 'Design Specialist';
+					}
+					if (staff.flags.technologySpecialist) {
+						rank = 'Tech Specialist';
+					}
+
+					if (rank!='' && staff.flags.expert) {
+						rank += ' - ';
+					}
+
+					if (staff.flags.expert) {
+						rank += staff.flags.expert;
+					}
+
+					/* Add to template object */
+					Evolution.Menus.staffDialog.tableViewStaff.staff[i] = {
+						index: i,
+						name: staff.name,
+						rank: rank,
+						level: Math.floor(staff.experience ? LevelCalculator.getLevelFractional(staff.experience) : 5 * staff.qualityFactor),
+						design: Math.floor(500 * staff.designFactor),
+						tech: Math.floor(500 * staff.technologyFactor),
+						speed: Math.floor(500 * staff.speedFactor),
+						research: Math.floor(500 * staff.researchFactor),
+						pay: UI.getShortNumberString(staff.salary)
+					};
+
+				}
+
+				/* Fetch template and add our data */
+				$.get('mods/EvolutionMod/assets/templates/staff-table.html',function(tmpl){
+					var complied = Handlebars.compile(tmpl);
+
+					$('#EVO-Staff-Table tbody').html( complied(
+						Evolution.Menus.staffDialog.tableViewStaff
+						));
+					$('#EVO-Staff-Table').trigger("update");
+
+					$('#EVO-Staff-Table > tbody').bind('click',function(e){
+						var index = $(e.target).parents('tr').data('index');
+						Evolution.Menus.staffDialog.singleView(index);
+						e.stopPropagation();
+						e.preventDefault();
+					});
+				});
+
+				return;
+			}
+		},
+
+		gameDialog: {
+			init: function(){
+
+			},
+
+			open: function(){
+				UI.showGameHistory();
 			}
 		}
-
-
 	};
 
 })();

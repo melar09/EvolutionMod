@@ -1,4 +1,4 @@
-EvolutionMod (Version 1.0.1)
+EvolutionMod (Version 1.0.2)
 ===============
 ###What is this?
 This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.greenheartgames.com/app/game-dev-tycoon/) this pack is aimed at adding a bunch of options onto the original game that I wish were in the original. We do require some mods to be installed first before you can use this mod. They are listed below as Dependencies. 
@@ -70,7 +70,7 @@ This pack added the following features to the research menu, all of the research
 - Localization Testing (Small, Medium, Large)
 
 ####Other Changes
-- Conventions now add to your fan base. 
+- Conventions now add or subtract your overall fans. 
 - New Staff Menu View (Button Bottom Left by Main Menu)
 - Customized EVO Mod Control Menu for settings and configurations.
 

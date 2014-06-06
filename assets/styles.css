@@ -21,46 +21,32 @@
 	#EVO-Icons .menu:before{ content: "\f0e7"; }
 
 .EVO{}
-.EVO .hint{
-	text-align: center;
-	font-color: gray;
-	padding: 1em 0em;
-	font-style: italic;
-}
-.EVO table{
-	width: 100%;
-	border-spacing: 2px;
-}
 
-	.EVO .specialty{
-		font-size: 0.6em;
-		font-style: italic;
-		color: gray;
-		display: block;
-	}
-	.EVO th{
-		color: black;
-		background-image: -webkit-linear-gradient(top, #FAA51A 0%, #F47A20 100%);
-		text-align: left;
-		line-height: 1.5em;
-		padding: 0 5px;
-		border: 1px solid #000;
-		cursor: pointer;
-		font-weight: normal;
-	}
 
-	.EVO tbody tr:nth-child(odd){
-		background-color: #EEE;
-	}
+.EVO .listView, .EVO .singleStaff{display: block;}
 
-	.EVO tbody td{
-		padding: 0.5em 1em;
-	}
+.EVO table{width: 100%;border-spacing: 2px;margin:0.5em 0;}
+	.EVO th{color: black;background-image: -webkit-linear-gradient(top, #FAA51A 0%, #F47A20 100%);text-align: left;line-height: 1.5em;padding: 0 5px;border: 1px solid #000;cursor: pointer;font-weight: normal;}
+	.EVO tbody tr:nth-child(odd){background-color: #EEE;}
+	.EVO tbody td{padding: 0.5em 1em;}
 
-	.EVO .staffR, .EVO .staffD, .EVO .staffT, .EVO .staffS, .EVO .staffL{
-		text-align: center;
-		vertical-align: top;
-	}
-	.EVO .staffN, .EVO .staffP{
-		vertical-align: top;
-	}
+	.EVO .staffU{font-size: 0.6em;font-style: italic;color: gray;display: block;}
+	.EVO .staffR, .EVO .staffD, .EVO .staffT, .EVO .staffS, .EVO .staffL{text-align: center;vertical-align: top;}
+	.EVO .staffN, .EVO .staffP{vertical-align: top;}
+
+.EVO .staffHeader{width: 100%;padding-bottom: 1em;}
+	.EVO .staffName{font-size:34pt;}
+	.EVO .staffRank{color:gray;}
+	.EVO .staffLevel{float:right;text-align:center;font-size:18pt;margin-top:0.5em;}
+	.EVO .staffLevelProgBar{width:150px;height:10px;border:1px solid #000;background-color: #00bfff;}
+	.EVO .staffLevelProgBarFill{height:10px;background-color:#ffbd43;width:64%;}
+
+	.EVO .subpanels{display: table;width: 100%;margin-bottom: 1em;}
+	.EVO .subpanel{display: table-cell;width: 50%;}
+
+	.EVO .panel{display: none;overflow: hidden;}
+	.EVO .panel.active{display: block;}
+
+	.EVO .valueList{margin: 0;padding: 0;list-style: none;font-size: 20pt;}
+		.EVO .valueList li{list-style: none;margin: 0.25em 0;text-align: right;}
+		.EVO .valueList strong{display: inline-block;text-align: left;float: left;}
