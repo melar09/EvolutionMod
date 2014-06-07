@@ -228,7 +228,7 @@
 		
 		if (multiplier>0){
 			//add fans
-			var newFans = Math.floor(c*multiplier);
+			var newFans = Math.floor((multiplier*0.1)*c);
 			company.fansChange = newFans;
 		}else{
 			// subtract fans
