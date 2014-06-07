@@ -3,12 +3,19 @@ EvolutionMod (Version 1.0.4)
 ###What is this?
 This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.greenheartgames.com/app/game-dev-tycoon/) this pack is aimed at adding a bunch of options onto the original game that I wish were in the original. We do require some mods to be installed first before you can use this mod. They are listed below as Dependencies. 
 
+
 ###Dependencies
  - [Official Game Dev Tycoon Modding API](https://github.com/greenheartgames/gdt-modAPI)
  - [UltimateLib](http://gdt-ultimatesuite.abesco.de/)
 
+
+###How to Install
+After you download the mod please place the folder inside the zip into your "mods" file. Once complete please rename that to just "EvolutionMod" removing the "-" and everything after that.
+
+
 ###Status
 Currently this pack is **Released** however is under heavy development. I recommend following the forum post [here](http://forum.greenheartgames.com/t/rel-evolutionmod-version-1-0-0/) for any updates, patches, or newer versions. Any developer wishing to help with changes or adding features is welcome to join just send me a message.
+
 
 ###Features
 _Anything marked with a **(NA)** has not been added yet. Anything with **(WIP)** is a work in progress and partially implemented. Anything which has no marks has been completely added and tested fully._
@@ -74,10 +81,12 @@ This pack added the following features to the research menu, all of the research
 - New Staff Menu View (Button Bottom Left by Main Menu)
 - Customized EVO Mod Control Menu for settings and configurations.
 
+
 ###Planned Features:
 - Leaderboards 
 - More Random Events
 - Review system overhaul
+
 
 ###Interested?
 This is an open source mod, and I am looking for help from anybody that can create graphics simillar to the game, or any javascript programmers. Please no insult intended but I need modders that can write custom Javascript as the things I plan on doing are of the more advanced type. 
