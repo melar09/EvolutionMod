@@ -1,4 +1,4 @@
-EvolutionMod (Version 1.0.2)
+EvolutionMod (Version 1.0.4)
 ===============
 ###What is this?
 This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.greenheartgames.com/app/game-dev-tycoon/) this pack is aimed at adding a bunch of options onto the original game that I wish were in the original. We do require some mods to be installed first before you can use this mod. They are listed below as Dependencies. 

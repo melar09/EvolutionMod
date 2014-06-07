@@ -30,6 +30,17 @@
 			UI._showContextMenu = new_initPopupMenu;
 		},
 
+		contextMenu: function(){
+
+			var old_showContextMenu = UI._showContextMenu;
+			var new_showContextMenu = function (type, menuItems, x, y) {
+				console.dir(menuItems);
+				old_showContextMenu(type, menuItems, x, y);
+			};
+			UI._showContextMenu = new_showContextMenu;
+
+		},
+
 		init: function() {
 			var html = '<div id="EVO-Icons">'
 			 +'<div id="EVO-Icon" class="ico menu" onclick="Evolution.Menus.menuDialog.open()"></div>'
@@ -41,6 +52,7 @@
 			Evolution.Menus.menuDialog.init();
 			Evolution.Menus.staffDialog.init();
 			Evolution.Menus.gameDialog.init();
+
 		},
 
 		menuDialog: {
