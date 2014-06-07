@@ -10,7 +10,7 @@ This is a Mod Pack developed for the video game [Game Dev Tycoon](http://www.gre
 
 
 ###How to Install
-After you download the mod please place the folder inside the zip into your "mods" file. Once complete please rename that to just "EvolutionMod" removing the "-" and everything after that.
+After you download the mod please place the folder "EvolutionMod" inside the zip into your "mods" file.
 
 
 ###Status
