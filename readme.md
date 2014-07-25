@@ -71,6 +71,8 @@ This pack added the following features to the research menu, all of the research
 - Five AAA Game Titles
 - Half a Billion in Cash
 - 1 Billion in Cash
+- 10 Billion in Cash
+- Hardcore Modder
 
 ####Contracts
 - Game Compliance Testing (Small, Medium, Large)
